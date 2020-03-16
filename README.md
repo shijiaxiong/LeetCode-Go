@@ -37,18 +37,15 @@ TODO 待填充
 
 困难：⭐⭐⭐
 
-> 实战题目 - Array
+> 题目列表
 
 | &emsp;题号&emsp; | &emsp;难度&emsp; | 题目链接&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | 答案链接&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; | 标签                         | 是否完成 |
 | :--------------: | :--------------: | :----------------------------------------------------------- | :----------------------------------------------------------- | ---------------------------- | :------: |
-|        11        |       中等       | [盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/) | [container with most water](https://github.com/gaoshengnan/LeetCode/blob/master/src/main/java/highFrequencyLeetcode/leetcode_11/ContainerWithMostWater.java) |                              |          |
-|        26        |       简单       | [删除排序数组中重复项](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/) | [remove Duplicates from sorted array](https://github.com/gaoshengnan/LeetCode/blob/master/src/main/java/highFrequencyLeetcode/leetcode_26/RemoveDuplicatesFromSortedArray.java) |                              |          |
-|        66        |       简单       | [加一](https://leetcode-cn.com/problems/plus-one/)           | [plus one](https://github.com/gaoshengnan/LeetCode/blob/master/src/main/java/highFrequencyLeetcode/leetcode_66/PlusOne.java) |                              |          |
-|        17        |        ⭐⭐        | [电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/) | [letter-combinations-of-a-phone-number](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0017.letter-combinations-of-a-phone-number/letter-combinations-of-a-phone-number.go) | `队列``回溯`                 |    ✅     |
-|        70        |        ⭐         | [爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)  | [climbing stairs](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0070.climbing-stairs/climb_stairs.go) | `递归 动态规划 斐波那契数列` |    ✅     |
-|        88        |       简单       | [合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) | [merge sorted array](https://github.com/gaoshengnan/LeetCode/blob/master/src/main/java/highFrequencyLeetcode/leetcode_88/MergeSortedArray.java) |                              |          |
-|       189        |       简单       | [旋转数组](https://leetcode-cn.com/problems/rotate-array/)   | [rotate array](https://github.com/gaoshengnan/LeetCode/blob/master/src/main/java/highFrequencyLeetcode/leetcode_189/RotateArray.java) |                              |          |
-|       283        |       简单       | [移动零](https://leetcode-cn.com/problems/move-zeroes/)      | [move zeroes](https://github.com/gaoshengnan/LeetCode/blob/master/src/main/java/highFrequencyLeetcode/leetcode_283/MoveZeroes.java) |                              |          |
+|        17        |        ⭐⭐        | [电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/) | [letter-combinations-of-a-phone-number](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0017.letter-combinations-of-a-phone-number/letter-combinations-of-a-phone-number.go) | `队列 回溯`                  |    ✅     |
+|        22        |        ⭐⭐        | [括号生成](https://leetcode-cn.com/problems/generate-parentheses/) | [generate-parentheses](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0022.generate-parentheses/generate-parentheses.go) | `回溯`                       |    ✅     |
+|                  |        ⭐⭐        | [全排列](https://leetcode-cn.com/problems/permutations/)     |                                                              |                              |          |
+|        47        |        ⭐⭐        | [ 全排列 II](https://leetcode-cn.com/problems/permutations-ii/) |                                                              |                              |          |
+|        70        |        ⭐         | [爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)  | [climbing-stairs](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0070.climbing-stairs/climb_stairs.go) | `递归 动态规划 斐波那契数列` |    ✅     |
 
 > 实战题目 - Linked List
 
