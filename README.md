@@ -43,9 +43,10 @@ TODO 待填充
 | :--------------: | :--------------: | :----------------------------------------------------------- | :----------------------------------------------------------- | ---------------------------- | :------: |
 |        17        |        ⭐⭐        | [电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/) | [letter-combinations-of-a-phone-number](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0017.letter-combinations-of-a-phone-number/letter-combinations-of-a-phone-number.go) | `队列 回溯`                  |    ✅     |
 |        22        |        ⭐⭐        | [括号生成](https://leetcode-cn.com/problems/generate-parentheses/) | [generate-parentheses](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0022.generate-parentheses/generate-parentheses.go) | `回溯`                       |    ✅     |
-|                  |        ⭐⭐        | [全排列](https://leetcode-cn.com/problems/permutations/)     |                                                              |                              |          |
-|        47        |        ⭐⭐        | [ 全排列 II](https://leetcode-cn.com/problems/permutations-ii/) |                                                              |                              |          |
+|        46        |        ⭐⭐        | [全排列](https://leetcode-cn.com/problems/permutations/)     |                                                              |                              |          |
+|        47        |        ⭐⭐        | [全排列 II](https://leetcode-cn.com/problems/permutations-ii/) |                                                              |                              |          |
 |        70        |        ⭐         | [爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)  | [climbing-stairs](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0070.climbing-stairs/climb_stairs.go) | `递归 动态规划 斐波那契数列` |    ✅     |
+|        77        |        ⭐⭐        | [组合](https://leetcode-cn.com/problems/combinations/)       |                                                              |                              |          |
 
 > 实战题目 - Linked List
 
