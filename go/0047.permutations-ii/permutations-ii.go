@@ -1,23 +1,12 @@
 package main
 
-//给定一个 没有重复 数字的序列，返回其所有可能的全排列。
-//
-// 示例:
-//
-// 输入: [1,2,3]
-//输出:
-//[
-//  [1,2,3],
-//  [1,3,2],
-//  [2,1,3],
-//  [2,3,1],
-//  [3,1,2],
-//  [3,2,1]
-//]
-// Related Topics 回溯算法
+import (
+	"sort"
+)
 
-// 方法一：回溯法
-func permute(nums []int) [][]int {
+func permuteUnique(nums []int) [][]int {
+	sort.Ints(nums)
+
 	n := len(nums)
 
 	vector := make([]int, n)
@@ -36,18 +25,20 @@ func makePermutation(cur, n int, nums, vector []int, taken []bool, ans *[][]int)
 		tmp := make([]int, n)
 		copy(tmp, vector)
 		*ans = append(*ans, tmp)
+		return
 	}
 
+	used := make(map[int]bool, n-cur)
 	for i := 0; i < n; i++ {
-		if !taken[i] {
+		if !taken[i] && !used[i] {
+			used[nums[i]] = true
+
 			taken[i] = true
 			vector[cur] = nums[i]
+
 			makePermutation(cur+1, n, nums, vector, taken, ans)
+
 			taken[i] = false
 		}
 	}
-}
-
-func main() {
-	permute([]int{1, 2, 3})
 }
