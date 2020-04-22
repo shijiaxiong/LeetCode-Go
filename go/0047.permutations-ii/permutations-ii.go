@@ -30,7 +30,7 @@ func makePermutation(cur, n int, nums, vector []int, taken []bool, ans *[][]int)
 
 	used := make(map[int]bool, n-cur)
 	for i := 0; i < n; i++ {
-		if !taken[i] && !used[i] {
+		if !taken[i] && !used[nums[i]] {
 			used[nums[i]] = true
 
 			taken[i] = true
