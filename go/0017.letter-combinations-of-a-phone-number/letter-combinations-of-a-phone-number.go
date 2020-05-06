@@ -68,6 +68,7 @@ func letterCombinations2(digits string) []string {
 
 	// 递归入口
 	// 上一层产物-输入规模-递归层级-全局变量
+	// offset递归层级可以通过上层产物去判断
 	combination("", digits, 0, &ret)
 	return ret
 }
