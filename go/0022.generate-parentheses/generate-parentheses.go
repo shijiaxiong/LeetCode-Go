@@ -19,6 +19,8 @@ import (
 // Related Topics 字符串 回溯算法
 
 // 方法一：回溯法
+//插入数量不超过n
+//可以插入 ） 的前提是 ( 的数量大于 ）
 func generateParenthesis(n int) []string {
 	res := []string{}
 
@@ -28,7 +30,7 @@ func generateParenthesis(n int) []string {
 }
 
 func recursive(cur string, n, left, right int, res *[]string) {
-	if left == n && right == n{
+	if left == n && right == n {
 		*res = append(*res, cur)
 		return
 	}
@@ -38,12 +40,36 @@ func recursive(cur string, n, left, right int, res *[]string) {
 		recursive(cur+`(`, n, left+1, right, res)
 	}
 
-	if left> right {
+	if left > right {
 		recursive(cur+`)`, n, left, right+1, res)
 	}
 }
 
-// 方法二
+// 方法二:方法一的不同写法，但使用了byte更节省空间。方法一更直观。
+func generateParenthesis2(n int) []string {
+	res := []string{}
+	cur := make([]byte, n*2)
+	recursive2(cur, n, n, n, 0, &res)
+	return res
+}
+
+func recursive2(cur []byte, n, left, right, idx int, res *[]string) {
+	if left == 0 && right == 0 {
+		*res = append(*res, string(cur))
+	}
+
+	if left > 0 {
+		cur[idx] = '('
+		recursive2(cur, n, left-1, right, idx+1, res)
+	}
+
+	if left < right {
+		cur[idx] = ')'
+		recursive2(cur, n, left, right-1, idx+1, res)
+	}
+
+}
+
 func main() {
 	res := generateParenthesis(3)
 	fmt.Println(res)
