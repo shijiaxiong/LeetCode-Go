@@ -42,11 +42,11 @@ TODO 待填充
 |        47        |        Medium        | [全排列 II](https://leetcode-cn.com/problems/permutations-ii/) | [permutation-ii](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0047.permutations-ii/permutations-ii.go) | `回溯`                       |
 |        49        |        Medium        | [字母异位词分组](https://leetcode-cn.com/problems/group-anagrams/) | [group-anagrams](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0049.group-anagrams/group-anagrams.go) | `排序` `哈希`                |
 | 51 | Hard | [N皇后](https://leetcode-cn.com/problems/n-queens/) | [n-queens](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0049.group-anagrams/group-anagrams.go) |  |
-| 60 | Medium | [第K个排列](https://leetcode-cn.com/problems/permutation-sequence/) |  | |
+| 60 | Medium | [第K个排列](https://leetcode-cn.com/problems/permutation-sequence/) | [permutation-sequence](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0060.permutation-sequence/permutation-sequence.go) | `递归` |
 |        70        |        Easy     | [爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)  | [climbing-stairs](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0070.climbing-stairs/climb_stairs.go) | `递归 动态规划 斐波那契数列` |
 |        77        |        Medium        | [组合](https://leetcode-cn.com/problems/combinations/)       | [combinations](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0077.combinations/combinations.go) | `回溯` `剪枝`                 |
-| 78 | Medium | [子集](https://leetcode-cn.com/problems/subsets/) |  |  |
-|  | Medium | [子集 II](https://leetcode-cn.com/problems/subsets-ii/) |  |  |
-| 93 | Medium | [复原IP地址](https://leetcode-cn.com/problems/restore-ip-addresses/) |  |  |
-|  | Easy | [字母大小全排列](https://leetcode-cn.com/problems/letter-case-permutation/) |  |  |
+| 78 | Medium | [子集](https://leetcode-cn.com/problems/subsets/) | [subsets](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0078.subsets/subsets.go) | `枚举` |
+| 90 | Medium | [子集 II](https://leetcode-cn.com/problems/subsets-ii/) | [subsets-ii](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0090.subsets-ii/subsets-ii.go) |  |
+| 93 | Medium | [复原IP地址](https://leetcode-cn.com/problems/restore-ip-addresses/) | [restore-ip-addresses](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0093.restore-ip-addresses/restore-ip-addresses.go) |  |
+| 784 | Easy | [字母大小全排列](https://leetcode-cn.com/problems/letter-case-permutation/) | [letter-case-permutation](https://github.com/shijiaxiong/LeetCode-Go/blob/master/go/0783.letter-case-permutation/letter-case-permutation.go) |  |
 
