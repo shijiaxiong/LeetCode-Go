@@ -1,4 +1,4 @@
-package main
+package problem0070
 
 //假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
 //
@@ -26,9 +26,9 @@ package main
 // Related Topics 动态规划
 
 // 解法一：暴力法
-// 时间复杂度：O(2ⁿ) 树形递归总节点数
+// 时间复杂度：O(2ⁿ) 树形递归总节点数  超时
 // 空间复杂度：O(n) 树的深度
-func climbStairs1(n int) int {
+func climbStairs(n int) int {
 	// i 定义了当前阶数，n 定义了目标阶数
 	return recursive1(0, n)
 }
@@ -79,7 +79,7 @@ func climbStairs3(n int) int {
 		return 1
 	}
 
-	// 注意长度是n+1
+	// 注意长度是n+11
 	dp := make([]int, n+1)
 	dp[1] = 1
 	dp[2] = 2
@@ -107,8 +107,4 @@ func climbStairs4(n int) int {
 	}
 
 	return second
-}
-
-func main() {
-	climbStairs1(3)
 }
