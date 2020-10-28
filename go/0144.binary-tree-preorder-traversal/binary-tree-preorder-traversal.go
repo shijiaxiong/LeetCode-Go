@@ -41,3 +41,17 @@ func dfs(root *TreeNode, res *[]int) {
 }
 
 // 解法三:迭代
+func preorderTraversal2(root *TreeNode) []int {
+	var res []int
+	var stack []*TreeNode
+	for len(stack) > 0 || root != nil { // root!=nil 只会在第一次判断root时使用 放到最后
+		for root != nil {
+			res = append(res, root.Val) // 前序输出
+			stack = append(stack, root)  //
+			root = root.Left
+		}
+		root = stack[len(stack)-1].Right
+		stack = stack[:len(stack)-1]
+	}
+	return res
+}
