@@ -6,6 +6,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+// 前序遍历
 // 解法一:递归
 func preorderTraversal(root *TreeNode) []int {
 	if root == nil {
