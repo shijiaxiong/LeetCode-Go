@@ -27,10 +27,12 @@ func Test_isAnagram(t *testing.T) {
 
 	for _, tc := range tcs {
 		fmt.Printf("~~%v~~\n", tc)
-		ast.Equal(tc.ans, isAnagram1(tc.s, tc.t), "输入:%v", tc)
+		ast.Equal(tc.ans, isAnagram(tc.s, tc.t), "输入:%v", tc)
 	}
 }
 
+//go test -bench=. -run=none
+//go test -bench=. -run=^$
 func Benchmark_isAnagram(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, tc := range tcs {
