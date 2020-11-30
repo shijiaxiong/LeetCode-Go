@@ -1,8 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
+package problem0049
 
 //给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。
 //
@@ -93,9 +89,3 @@ func groupAnagrams2(strs []string) [][]string {
 	return res
 }
 
-func main() {
-	param := []string{"eat","tea","tan","ate","nat","bat"}
-	//param := []string{"eat", "tea", "ate"}
-
-	fmt.Println(groupAnagrams(param))
-}
