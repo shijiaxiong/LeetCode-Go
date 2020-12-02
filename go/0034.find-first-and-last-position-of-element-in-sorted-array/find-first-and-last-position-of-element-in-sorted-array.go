@@ -75,7 +75,9 @@ func findFirst(nums []int, target int) int {
 	low, high := 0, len(nums)-1
 
 	for low < high {
+		// mid 向下取整
 		mid := low + (high-low)/2
+		//fmt.Println(`first`,low, high, mid)
 		switch {
 		case nums[mid] < target:
 			low = mid + 1
@@ -97,7 +99,9 @@ func findLast(nums []int, target int) int {
 	low, high := 0, len(nums)-1
 
 	for low < high {
+		// mid 向上取整
 		mid := low + (high-low+1)/2
+		//fmt.Println(`last`, low, high, mid)
 		switch {
 		case nums[mid] < target:
 			low = mid + 1
