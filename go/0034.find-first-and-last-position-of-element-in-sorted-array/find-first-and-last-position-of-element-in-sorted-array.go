@@ -60,6 +60,7 @@ func main() {
 }
 
 // 直接寻找first last的二分查找
+// 注意mid值
 func searchRange2(nums []int, target int) []int {
 	if len(nums) == 0 {
 		return []int{-1, -1}
@@ -73,7 +74,7 @@ func searchRange2(nums []int, target int) []int {
 func findFirst(nums []int, target int) int {
 	low, high := 0, len(nums)-1
 
-	for low <= high {
+	for low < high {
 		mid := low + (high-low)/2
 		switch {
 		case nums[mid] < target:
@@ -95,7 +96,7 @@ func findFirst(nums []int, target int) int {
 func findLast(nums []int, target int) int {
 	low, high := 0, len(nums)-1
 
-	for low <= high {
+	for low < high {
 		mid := low + (high-low+1)/2
 		switch {
 		case nums[mid] < target:
@@ -103,7 +104,7 @@ func findLast(nums []int, target int) int {
 		case nums[mid] > target:
 			high = mid - 1
 		default:
-			high = mid
+			low = mid
 		}
 	}
 
