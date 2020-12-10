@@ -86,6 +86,33 @@ func combination(prefix string, digits string, offset int, ret *[]string) {
 
 }
 
+// 回溯法求解 的另一种写法
+func letterCombinations3(digits string) []string {
+	if len(digits) == 0{
+		return nil
+	}
+
+	res := make([]string,0)
+
+	combination3(``, digits, &res)
+	return res
+}
+
+func combination3(cur string, digits string, res *[]string){
+	if len(cur) == len(digits) {
+		*res = append(*res, cur)
+		return
+	}
+
+	letters := m[digits[len(cur)]]
+
+	for i:= 0; i<len(letters);i++{
+		combination(cur +letters[i],digits,res)
+	}
+
+}
+
+
 func main() {
 	fmt.Println(letterCombinations(`23`))
 	fmt.Println(letterCombinations2(`23`))
