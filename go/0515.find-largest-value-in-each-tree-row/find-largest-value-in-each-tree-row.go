@@ -1,11 +1,15 @@
 package problem0515
 
 import (
-	"github.com/shijiaxiong/LeetCode-Go/go/utils"
 	"math"
 )
 
-type TreeNode utils.TreeNode
+//type TreeNode utils.TreeNode
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
 
 func largestValues(root *TreeNode) []int {
 	var res []int
