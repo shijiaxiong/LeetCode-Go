@@ -31,7 +31,35 @@ func max(a, b int) int {
 	return b
 }
 
-// 动态规划 更优化解答
+// 动态规划
+// 二维降一维
+func longestCommonSubsequence0(text1 string, text2 string) int {
+	dp := make([]int, len(text2)+1)
+
+	for i := 1; i <= len(text1); i++ {
+		last := 0
+		for j := 1; j <= len(text2); j++ {
+			tmp := dp[j] // tmp 记录的是二维dp矩阵正上方的值
+			if text1[i-1] == text2[j-1] {
+				dp[j] = last + 1 // last 记录的是二维dp矩阵左上方的值
+			} else {
+				dp[j] = max(tmp, dp[j-1])
+			}
+			last = tmp
+		}
+	}
+
+	return dp[len(text2)]
+}
+
+func max(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
+}
+
+
 func longestCommonSubsequence1(s1, s2 string) int {
 	m, n := len(s1), len(s2)
 	A, B := []byte(s1), []byte(s2)

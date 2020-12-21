@@ -2,25 +2,7 @@ package main
 
 import "fmt"
 
-//class Solution {
-//    Integer[][] memo;
-//    public int minimumTotal(List<List<Integer>> triangle) {
-//        memo = new Integer[triangle.size()][triangle.size()];
-//        return  dfs(triangle, 0, 0);
-//    }
-//
-//    private int dfs(List<List<Integer>> triangle, int i, int j) {
-//        if (i == triangle.size()) {
-//            return 0;
-//        }
-//        if (memo[i][j] != null) {
-//            return memo[i][j];
-//        }
-//        return memo[i][j] = Math.min(dfs(triangle, i + 1, j), dfs(triangle, i + 1, j + 1)) + triangle.get(i).get(j);
-//    }
-//}
-//
-
+// 直接递归
 func minimumTotal(triangle [][]int) int {
 
 	return dfs(triangle, 0, 0)
@@ -30,8 +12,7 @@ func dfs(triangle [][]int, i, j int) int {
 	if i == len(triangle) {
 		return 0
 	}
-
-	return min(dfs(triangle, i+1, j), dfs(triangle, i+1, j+1)+triangle[i][j])
+	return min(dfs(triangle, i+1, j), dfs(triangle, i+1, j+1))+ triangle[i][j]
 }
 
 func min(a, b int) int {
@@ -41,6 +22,55 @@ func min(a, b int) int {
 	return a
 }
 
+// 记忆化递归
+func minimumTotal0(triangle [][]int) int {
+	mem := make([][]int, len(triangle))
+	for i := range mem {
+		mem[i] = make([]int, len(triangle[i]))
+	}
+
+	return dfs0(triangle, 0, 0, &mem)
+}
+
+func dfs0(triangle [][]int, i, j int, mem *[][]int) int {
+	if i == len(triangle) {
+		return 0
+	}
+
+	if (*mem)[i][j] != 0 {
+		return (*mem)[i][j]
+	}
+
+	(*mem)[i][j] = min(dfs0(triangle, i+1, j, mem), dfs0(triangle, i+1, j+1,mem))+ triangle[i][j]
+
+	return (*mem)[i][j]
+}
+
+// 动态规划
+// 二维数组
+func minimumTotal1(triangle [][]int) int {
+	dp:=make([][]int, len(triangle))
+	for i:= range dp{
+		dp[i] = make([]int, len(triangle))
+	}
+
+	for i := len(triangle)-1;i>=0;i--{
+		for j := 0;j< len(triangle[i]);j++{
+			if i == len(triangle)-1{
+				dp[i][j] = triangle[i][j]
+			} else {
+				dp[i][j] = min(dp[i+1][j], dp[i+1][j+1])+triangle[i][j]
+			}
+		}
+	}
+
+	return dp[0][0]
+}
+
+// 动态规划
+// 一位数组
+
+
 func main() {
-	fmt.Println(minimumTotal([][]int{{2}, {3, 4}, {6, 5, 7}, {4, 1, 8, 3}}))
+	fmt.Println(minimumTotal0([][]int{{2}, {3, 4}, {6, 5, 7}, {4, 1, 8, 3}}))
 }
