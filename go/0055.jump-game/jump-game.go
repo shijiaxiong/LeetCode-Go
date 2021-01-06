@@ -49,4 +49,24 @@ func dfs(nums []int, index int) bool {
 	return false
 }
 
+// 动态规划
+// 拆分子元素 判断第二个元素能不能从第一个可达
+func canJump1(nums []int) bool {
+	if len(nums) == 0 {
+		return false
+	}
 
+	dp := make([]bool, len(nums))
+	dp[0] = true
+	for i := 1; i < len(nums); i++ {
+		for j := 0; j < i; j++ {
+			//如果之前的j节点可达，并且从此节点可以到跳到i
+			if dp[j] && nums[j]+j >= i {
+				dp[i] = true
+				break
+			}
+		}
+	}
+
+	return dp[len(nums)-1]
+}
