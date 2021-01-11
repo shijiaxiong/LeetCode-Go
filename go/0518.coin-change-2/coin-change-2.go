@@ -9,6 +9,7 @@ package main
 //    DP[k][i] = DP[k-1][i] + DP[k][i-k]
 //else
 //    DP[k][i] = DP[k-1][i]
+// 背包问题：背包最大容量amount,有len(coins)类物品，每个物品的价值coins[i], 每类物品数量无限
 func change(amount int, coins []int) int {
 	// 组成的矩形 垂直方向是硬币数；水平方向是金额
 	dp := make([][]int, len(coins)+1)
