@@ -19,6 +19,7 @@ func max(a, b int) int {
 }
 
 // 动态规划
+//dp[i] = max(nums[i], nums[i] + dp[i - 1])
 func maxSubArray0(nums []int) int {
 	if len(nums) == 0 {
 		return 0
@@ -39,6 +40,30 @@ func maxSubArray0(nums []int) int {
 		}
 
 		res = max(res, dp[i])
+	}
+
+	return res
+}
+
+// 动态规划压缩
+func maxSubArray1(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+
+	if len(nums) == 1 {
+		return nums[0]
+	}
+
+	pre := nums[0]
+	cur := 0
+	res := nums[0]
+
+	for i := 1; i < len(nums); i++ {
+		cur = max(nums[i], nums[i]+pre)
+		pre = cur
+
+		res = max(res, cur)
 	}
 
 	return res
