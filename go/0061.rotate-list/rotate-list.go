@@ -38,7 +38,7 @@ func rotateRight(head *ListNode, k int) *ListNode {
 		start = start.Next
 		end = end.Next
 	}
-	
+
 	res := end.Next
 	// 不置为空就会形成环
 	end.Next = nil
