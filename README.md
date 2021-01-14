@@ -17,7 +17,7 @@ TODO 待填充
 
 ## 算法题
 
-面试高频出现，以及一些非常经典重要的算法题优先（搬了其他项目的题目列表🤷‍♀️）
+面试高频出现，以及一些非常经典重要的算法题优先
 
 > 题目列表
 
@@ -161,8 +161,8 @@ TODO 待填充
 | 0136 | Single Number                                                |                                                              |                                                              |   66.3%    |    Easy    |        |           |
 | 0137 | Single Number II                                             |                                                              |                                                              |   53.5%    |   Medium   |        |           |
 | 0138 | Copy List with Random Pointer                                | [复制带随机指针的链表](https://leetcode-cn.com/problems/copy-list-with-random-pointer/) |                                                              |   39.3%    |   Medium   |        |           |
-| 0139 | Word Break                                                   |                                                              |                                                              |   41.4%    |   Medium   |        |           |
-| 0140 | Word Break II                                                |                                                              |                                                              |   34.2%    |    Hard    |        |           |
+| 0139 | Word Break                                                   | [环形链表](https://leetcode-cn.com/problems/linked-list-cycle/) |                                                              |   41.4%    |   Medium   |        |           |
+| 0140 | Word Break II                                                | [环形链表2](https://leetcode-cn.com/problems/linked-list-cycle-ii/) |                                                              |   34.2%    |    Hard    |        |           |
 | 0141 | Linked List Cycle                                            |                                                              |                                                              |   42.1%    |    Easy    |        |           |
 | 0142 | Linked List Cycle II                                         |                                                              |                                                              |   39.2%    |   Medium   |        |           |
 | 0143 | Reorder List                                                 |                                                              |                                                              |   40.1%    |   Medium   |        |           |

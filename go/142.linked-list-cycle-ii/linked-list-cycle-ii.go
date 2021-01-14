@@ -5,6 +5,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
+// 双指针两次相遇
 func detectCycle(head *ListNode) *ListNode {
 	fast := head
 	slow := head
