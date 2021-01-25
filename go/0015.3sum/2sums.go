@@ -10,9 +10,11 @@ func threeSum(nums []int) [][]int {
 	res := [][]int{}
 
 	for i := range nums {
+		// 排序后的数字，如果当前数字大于0，则三数之和一定大于0
 		if nums[i] > 0 {
 			break
 		}
+
 		// 避免添加重复的结果
 		// i>0 是为了防止nums[i-1]溢出
 		if i > 0 && nums[i] == nums[i-1] {

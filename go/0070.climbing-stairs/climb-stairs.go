@@ -90,7 +90,7 @@ func climbStairs3(n int) int {
 	return dp[n]
 }
 
-// 解法四：斐波那契数列
+// 解法四：斐波那契数列 - 其实是动态规划的降维
 // 时间复杂度：O(n)
 // 空间复杂度：O(1)
 func climbStairs4(n int) int {
