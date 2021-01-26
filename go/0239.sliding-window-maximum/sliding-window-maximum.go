@@ -10,7 +10,7 @@ func maxSlidingWindow(nums []int, k int) []int {
 	window, res := []int{}, []int{}
 
 	for i, x := range nums {
-		// 挪动窗口
+		// 当window装满后再开始往后挪动窗口
 		if i >= k && window[0] <= i-k {
 			window = window[1:]
 		}
@@ -22,7 +22,7 @@ func maxSlidingWindow(nums []int, k int) []int {
 
 		window = append(window, i)
 
-		// 添加结果
+		// 从第k - 1开始，只要i >= k - 1 可以将最左元素添加到结果
 		if i >= k-1 {
 			res = append(res, nums[window[0]])
 		}
