@@ -1,5 +1,6 @@
 package main
 
+// 双端队列 队列内的数据保持递减
 func maxSlidingWindow(nums []int, k int) []int {
 	if nums == nil {
 		return []int{}
@@ -15,7 +16,7 @@ func maxSlidingWindow(nums []int, k int) []int {
 			window = window[1:]
 		}
 
-		// 逐个删除最大值左边的各个元素
+		// 逐个删除最大值左边的各个元素, 维护一个从大到小的队列
 		for len(window) > 0 && nums[window[len(window)-1]] <= x {
 			window = window[:len(window)-1]
 		}
