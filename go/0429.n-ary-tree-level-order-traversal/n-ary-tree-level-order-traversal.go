@@ -7,6 +7,7 @@ type Node struct {
 
 var res [][]int
 
+// 递归
 func levelOrder(root *Node) [][]int {
 	if root == nil {
 		return nil
@@ -21,6 +22,7 @@ func dfs(root *Node, level int) {
 		return
 	}
 
+	// 初始化当前层
 	if len(res) == level {
 		res = append(res, []int{})
 	}
