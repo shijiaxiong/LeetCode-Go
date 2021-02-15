@@ -58,11 +58,13 @@ func recursive2(cur []byte, n, left, right, idx int, res *[]string) {
 		*res = append(*res, string(cur))
 	}
 
+	// 可以分配左括号就一直往下分配
 	if left > 0 {
 		cur[idx] = '('
 		recursive2(cur, n, left-1, right, idx+1, res)
 	}
 
+	//
 	if left < right {
 		cur[idx] = ')'
 		recursive2(cur, n, left, right-1, idx+1, res)
