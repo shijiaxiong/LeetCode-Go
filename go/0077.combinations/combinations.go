@@ -56,35 +56,27 @@ func recursive(n, k int, start int, visit []int, res *[][]int) {
 	return
 }
 
-//
-//func combine2(n int, k int) [][]int {
-//	var res [][]int
-//
-//	if k <= 0 || n <= 0 || n < k {
-//		return res
-//	}
-//
-//	var visit []int
-//
-//	// 输入规模-递归层级-上一层产物-全局变量
-//	recursive2(n, k, 0, 1, visit, &res)
-//	return res
-//}
-//
-//func recursive2(n, k int, idx, begin int, visit []int, res *[][]int) {
-//	if len(visit) == k {
-//		temp := make([]int, k)
-//		copy(temp, visit)
-//		*res = append(*res, temp)
-//		return
-//	}
-//
-//	for i := begin; i <= n+1-k+idx; i++ {
-//		visit[idx] = i
-//		recursive2(n, k, idx+1, i+1, visit, res)
-//		visit = visit[:len(visit)-1]
-//	}
-//}
+// 剪枝
+// 搜索上界 + 接下来要选择的元素个数 - 1 = n 
+func recursive2(n, k, start int, visit []int, res *[][]int) {
+	if len(visit) == k {
+		tmp := make([]int, k)
+		copy(tmp, visit)
+
+		*res = append(*res, tmp)
+		return
+	}
+
+	for i := start; i <= n-(k-len(visit))+1; i++ {
+		visit = append(visit, i)
+
+		recursive(n, k, i+1, visit, res)
+
+		visit = visit[:len(visit)-1]
+	}
+
+	return
+}
 
 func main() {
 	fmt.Println(combine(4, 2))
