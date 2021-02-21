@@ -18,32 +18,33 @@ package main
 
 // 方法一：回溯法
 func permute(nums []int) [][]int {
-	n := len(nums)
+	length := len(nums)
 
-	vector := make([]int, n)
+	path := make([]int, length)
+	visited := make([]bool, length)
+	var res [][]int
 
-	taken := make([]bool, n)
+	recursive(nums, length, 0, path, visited, &res)
 
-	var ans [][]int
-
-	makePermutation(0, n, nums, vector, taken, &ans)
-
-	return ans
+	return res
 }
 
-func makePermutation(cur, n int, nums, vector []int, taken []bool, ans *[][]int) {
-	if cur == n {
-		tmp := make([]int, n)
-		copy(tmp, vector)
-		*ans = append(*ans, tmp)
+func recursive(nums []int, length int, depth int, path []int, visited []bool, res *[][]int) {
+	if length == depth {
+		temp := make([]int, length)
+		copy(temp, path)
+		*res = append(*res, temp)
+		return
 	}
 
-	for i := 0; i < n; i++ {
-		if !taken[i] {
-			taken[i] = true
-			vector[cur] = nums[i]
-			makePermutation(cur+1, n, nums, vector, taken, ans)
-			taken[i] = false
+	for i := 0 ;i < length; i++ {
+		if !visited[i] {
+			visited[i] = true
+			path[depth] = nums[i]
+
+			recursive(nums, length, depth+1, path, visited, res)
+
+			visited[i] = false
 		}
 	}
 }

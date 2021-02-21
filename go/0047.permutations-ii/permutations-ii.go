@@ -5,40 +5,63 @@ import (
 )
 
 func permuteUnique(nums []int) [][]int {
+	length := len(nums)
 	sort.Ints(nums)
 
-	n := len(nums)
+	path := make([]int, length)
+	visited := make([]bool, length)
+	var res [][]int
 
-	vector := make([]int, n)
+	recursive(nums, length, 0, path, visited, &res)
 
-	taken := make([]bool, n)
-
-	var ans [][]int
-
-	makePermutation(0, n, nums, vector, taken, &ans)
-
-	return ans
+	return res
 }
 
-func makePermutation(cur, n int, nums, vector []int, taken []bool, ans *[][]int) {
-	if cur == n {
-		tmp := make([]int, n)
-		copy(tmp, vector)
-		*ans = append(*ans, tmp)
+func recursive(nums []int, length int, depth int, path []int, visited []bool, res *[][]int) {
+	if length == depth {
+		temp := make([]int, length)
+		copy(temp, path)
+		*res = append(*res, temp)
 		return
 	}
 
-	used := make(map[int]bool, n-cur)
-	for i := 0; i < n; i++ {
-		if !taken[i] && !used[nums[i]] {
+	for i := 0; i < length; i++ {
+		if !visited[i] {
+			// 访问过的相同数字跳过
+			if i > 0 && nums[i] == nums[i-1] && visited[i-1] {
+				continue
+			}
+
+			visited[i] = true
+			path[depth] = nums[i]
+
+			recursive(nums, length, depth+1, path, visited, res)
+
+			visited[i] = false
+		}
+	}
+}
+
+func recursive0(nums []int, length int, depth int, path []int, visited []bool, res *[][]int) {
+	if length == depth {
+		temp := make([]int, length)
+		copy(temp, path)
+		*res = append(*res, temp)
+		return
+	}
+
+	used := make(map[int]bool, length-depth)
+	for i := 0; i < length; i++ {
+		if !visited[i] && !used[nums[i]] {
+
 			used[nums[i]] = true
 
-			taken[i] = true
-			vector[cur] = nums[i]
+			visited[i] = true
+			path[depth] = nums[i]
 
-			makePermutation(cur+1, n, nums, vector, taken, ans)
+			recursive0(nums, length, depth+1, path, visited, res)
 
-			taken[i] = false
+			visited[i] = false
 		}
 	}
 }

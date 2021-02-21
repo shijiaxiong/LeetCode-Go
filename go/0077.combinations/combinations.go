@@ -57,7 +57,7 @@ func recursive(n, k int, start int, visit []int, res *[][]int) {
 }
 
 // 剪枝
-// 搜索上界 + 接下来要选择的元素个数 - 1 = n 
+// 搜索上界 + 接下来要选择的元素个数 - 1 = n
 func recursive2(n, k, start int, visit []int, res *[][]int) {
 	if len(visit) == k {
 		tmp := make([]int, k)
