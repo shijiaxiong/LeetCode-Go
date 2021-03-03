@@ -57,6 +57,7 @@ func maxProfit1(prices []int) int {
 
 	return dp[length-1][0]
 }
+
 func max(a, b int) int {
 	if a > b {
 		return a
