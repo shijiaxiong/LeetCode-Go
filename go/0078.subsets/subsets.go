@@ -17,6 +17,8 @@ func subsets1(nums []int) [][]int {
 	return res
 }
 
+// 回溯算法
+// https://leetcode-cn.com/problems/subsets/solution/hui-su-python-dai-ma-by-liweiwei1419/
 func subsets(nums []int) [][]int {
 	res := make([][]int, 0)
 
