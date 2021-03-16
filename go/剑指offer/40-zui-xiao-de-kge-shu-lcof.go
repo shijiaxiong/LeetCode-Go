@@ -5,6 +5,7 @@ import (
 )
 
 // 快排序
+// 利用快排的性质，基准值左边比它小，右边比它大
 func getLeastNumbers0(arr []int, k int) []int {
 	if k == 0 {
 		return []int{}
@@ -93,8 +94,7 @@ func (h *IHeap) Push(x interface{}) {
 	*h = append(*h, x.(int))
 }
 
-func (h *IHeap) Pop() interface{} {
-	tmp := (*h)[len(*h)-1]
-	*h = (*h)[:len(*h)-1]
-	return tmp
+func (h *IHeap) Pop(v interface{}) {
+	*h, v = (*h)[:h.Len()-1], (*h)[h.Len()-1]
+	return
 }
