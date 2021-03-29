@@ -36,40 +36,36 @@ import (
 //  [5]
 //]
 // Related Topics 数组 回溯算法
-
 func combinationSum2(candidates []int, target int) [][]int {
+	var res [][]int
+	var cur []int
 	sort.Ints(candidates)
-	res := make([][]int, 0)
-	tmp := make([]int, 0)
+	recursive(candidates, target, 0, cur, &res)
 
-	recursive(candidates, target, 0, tmp, &res)
 	return res
 }
 
-func recursive(candidates []int, target int, cur int, tmp []int, res *[][]int) {
+func recursive(candidates []int, target int, begin int, cur []int, res *[][]int) {
 	if target == 0 {
+		tmp := make([]int, len(cur))
+		copy(tmp, cur)
 		*res = append(*res, tmp)
 		return
 	}
 
-	n := len(candidates)
-
-	for i := cur; i < n; i++ {
-		row := i
-		// 跳过当前循环的重复项
-		for i < n-1 && candidates[i] == candidates[i+1] {
-			i++
-		}
-
-		// 当前项大于目标值返回
+	for i := begin; i < len(candidates); i++ {
+		// 剪枝 排序后 当前值大于target，则之后所有数都会大于target
 		if candidates[i] > target {
 			return
 		}
 
-		new1 := make([]int, len(tmp))
-		copy(new1, tmp)
-		new1 = append(new1, candidates[i])
-		recursive(candidates, target-candidates[i], row+1, new1, res)
+		// 在进入递归之前都是当前层的逻辑
+		if i > begin && candidates[i] == candidates[i-1] {
+			continue
+		}
 
+		cur = append(cur, candidates[i])
+		recursive(candidates, target-candidates[i], i+1, cur, res)
+		cur = cur[:len(cur)-1]
 	}
 }
