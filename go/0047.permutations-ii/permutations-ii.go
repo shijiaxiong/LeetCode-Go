@@ -8,19 +8,19 @@ func permuteUnique(nums []int) [][]int {
 	length := len(nums)
 	sort.Ints(nums)
 
-	path := make([]int, length)
+	cur := make([]int, length)
 	visited := make([]bool, length)
 	var res [][]int
 
-	recursive(nums, length, 0, path, visited, &res)
+	recursive(nums, length, 0, cur, visited, &res)
 
 	return res
 }
 
-func recursive(nums []int, length int, depth int, path []int, visited []bool, res *[][]int) {
+func recursive(nums []int, length int, depth int, cur []int, visited []bool, res *[][]int) {
 	if length == depth {
 		temp := make([]int, length)
-		copy(temp, path)
+		copy(temp, cur)
 		*res = append(*res, temp)
 		return
 	}
@@ -33,9 +33,9 @@ func recursive(nums []int, length int, depth int, path []int, visited []bool, re
 			}
 
 			visited[i] = true
-			path[depth] = nums[i]
+			cur[depth] = nums[i]
 
-			recursive(nums, length, depth+1, path, visited, res)
+			recursive(nums, length, depth+1, cur, visited, res)
 
 			visited[i] = false
 		}

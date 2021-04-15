@@ -76,3 +76,35 @@ func main() {
 	res := generateParenthesis(3)
 	fmt.Println(res)
 }
+
+// https://leetcode-cn.com/problems/generate-parentheses/solution/hui-su-suan-fa-by-liweiwei1419/
+func generateParenthesis3(n int) []string {
+	res := make([]string, 0)
+	if n == 0 {
+		return res
+	}
+
+	recursive3(n, n, "", &res)
+
+	return res
+}
+
+func recursive3(left, right int, cur string, res *[]string) {
+	if left ==0 && right == 0 {
+		*res = append((*res), cur)
+		return
+	}
+
+	// 剩余的左括号大于右括号，不符合题目要求，剪枝
+	if left > right {
+		return
+	}
+
+	if left > 0 {
+		recursive3(left-1, right, cur +"(", res)
+	}
+
+	if right > 0 {
+		recursive3(left, right - 1, cur +")", res)
+	}
+}
