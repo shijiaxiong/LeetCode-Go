@@ -48,6 +48,7 @@ func maxProfit0(prices []int) int {
 		dp[i][0] = max(dp[i-1][0], dp[i-1][1]+prices[i])
 		// 第i天买入收益 = max(第i-1天买入收益，-当天股价)
 		// 找最便宜的时候买入
+		// 题目要求只交易一次，所以昨天不持股，手上的现金数就是当天的股价的相反数
 		dp[i][1] = max(dp[i-1][1], -prices[i])
 	}
 

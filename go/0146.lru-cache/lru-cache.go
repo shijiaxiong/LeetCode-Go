@@ -77,6 +77,7 @@ func (this *LRUCache) Remove(node *Node) {
 func (this *LRUCache) Add(node *Node) {
 	head := this.head
 
+	// 先把node和head.Next连接，再连接node和head
 	node.Next = head.Next
 	head.Next.Prev = node
 
