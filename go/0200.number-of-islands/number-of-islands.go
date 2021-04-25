@@ -1,6 +1,7 @@
 package problem0200
 
 // 解法一：dfs
+// https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/
 func numIslands(grid [][]byte) int {
 	count := 0
 	for i := 0; i < len(grid); i++ {
@@ -23,6 +24,7 @@ func dfs(grid *[][]byte, r, c int) {
 	}
 
 	//如果这个格子不是岛屿，直接返回
+	// 避免重复
 	if (*grid)[r][c] != '1' {
 		return
 	}

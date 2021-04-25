@@ -4,6 +4,9 @@ import (
 	"sort"
 )
 
+// https://leetcode-cn.com/problems/3sum/solution/pai-xu-shuang-zhi-zhen-zhu-xing-jie-shi-python3-by/
+// 时间复杂度：N方，其中数组排序O(NlogN)
+// 空间复杂度：O(1)
 func threeSum(nums []int) [][]int {
 	// 排序后，可以按规律查找
 	sort.Ints(nums)
