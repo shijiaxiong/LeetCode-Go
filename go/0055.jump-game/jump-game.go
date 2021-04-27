@@ -2,6 +2,7 @@ package problem0055
 
 // 贪心算法
 func canJump0(nums []int) bool {
+	// 能到达的最大范围
 	k := 0
 	for i := 0; i < len(nums); i++ {
 		// 最大的累计步数都达不到当前的下标值，退出
@@ -59,7 +60,9 @@ func canJump1(nums []int) bool {
 	dp := make([]bool, len(nums))
 	dp[0] = true
 	for i := 1; i < len(nums); i++ {
-		for j := 0; j < i; j++ {
+		//
+		for j := i - 1; j >= 0; j-- {
+		//for j := 0; j < i; j++ {
 			//如果之前的j节点可达，并且从此节点可以到跳到i
 			if dp[j] && nums[j]+j >= i {
 				dp[i] = true

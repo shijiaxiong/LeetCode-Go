@@ -46,3 +46,41 @@ func search(nums []int, target int) int {
 func main(){
 	fmt.Println(search([]int{3,1}, 1))
 }
+
+// https://leetcode-cn.com/problems/search-in-rotated-sorted-array/solution/er-fen-fa-python-dai-ma-java-dai-ma-by-liweiwei141/
+func search0(nums []int, target int) int {
+	left := 0
+	right := len(nums) - 1
+
+	for left < right {
+		// 根据分支的逻辑将中间数改成上取整
+		mid := left + (right - left + 1) / 2
+
+		//  右区间
+		if nums[mid] < nums[right] {
+			// 此时 [mid..right] 有序
+			if nums[mid] <= target && target <= nums[right] {
+				// 如果 target 的值落在这个区间里，下一轮搜索区间是 [mid..right]，此时设置 left = mid;
+				left = mid
+			} else {
+				// 否则，下一轮搜索区间是 [left..mid - 1]，此时设置 right = mid - 1;
+				right = mid - 1
+			}
+		} else {
+			// 此时 nums[mid] >= nums[right]，注意此时 mid 可能与 right 重合
+			// 数组前半部分有序，即 [left..mid] 有序，为了与上一个分支的逻辑一致，认为 [left..mid - 1] 有序
+			if nums[left] <= target && target <= nums[mid - 1] {
+				right = mid - 1
+			} else {
+				// 否则，下一轮搜索区间是 [mid..right]，此时设置 left = mid;
+				left = mid
+			}
+		}
+	}
+
+	if nums[left] == target {
+		return left
+	}
+
+	return -1
+}

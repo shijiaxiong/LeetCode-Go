@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func jump(nums []int) int {
-	ans := 0
+	steps := 0
 	start := 0 // 某一次起跳点范围开始的格子
 	end := 1   // 某一次跳点范围结束的格子
 
@@ -17,10 +17,10 @@ func jump(nums []int) int {
 
 		start = end      // 下一次起跳点范围开始的格子
 		end = maxPos + 1 // 下一次跳点范围结束的格子
-		ans++            // 跳跃次数
+		steps++            // 跳跃次数
 	}
 
-	return ans
+	return steps
 }
 
 // 优化
@@ -35,8 +35,9 @@ func jump0(nums []int) int {
 		maxPosition = max(maxPosition, nums[i]+i)
 
 		//遇到边界，就更新边界，并且步数加一
+		// 边界由上一次跳跃确定
 		if i == end {
-			end = maxPosition
+			end = maxPosition // 找到下一次的边界
 			steps++
 		}
 	}
