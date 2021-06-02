@@ -29,3 +29,29 @@ func deleteDuplicates(head *ListNode) *ListNode {
 
 	return dummy.Next
 }
+
+func deleteDuplicates1(head *ListNode) *ListNode {
+	dummy := &ListNode{}
+	dummy.Next = head
+
+	prev := dummy
+	curr := head
+	for curr != nil && curr.Next !=nil {
+
+		if curr.Val == curr.Next.Val {
+			//当遇到当前节点值和下一节点值相等的节点时，进行while循环找到下一个不相等的节点，
+			temp := curr.Next
+			for temp != nil && temp.Val == curr.Val {
+				temp = temp.Next
+			}
+			prev.Next = temp
+			curr = temp
+		} else {
+			//当遇到当前节点值和下一节点值不相等的节点时，prev和curr都移动到下一个节点接着遍历
+			prev = prev.Next
+			curr = curr.Next
+		}
+	}
+
+	return dummy.Next
+}

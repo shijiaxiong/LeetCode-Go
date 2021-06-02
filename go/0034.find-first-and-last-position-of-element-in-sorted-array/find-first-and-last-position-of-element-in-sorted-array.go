@@ -1,64 +1,5 @@
 package main
 
-import "fmt"
-
-// 二分查找法
-// 时间复杂度：N*O(logN)
-// 空间复杂度：O(1)
-func searchRange(nums []int, target int) []int {
-	index := search(nums, target)
-	if index == -1 {
-		return []int{-1, -1}
-	}
-
-	first := index
-	for {
-		f := search(nums[:first], target)
-		if f == -1 {
-			break
-		}
-
-		first = f
-	}
-
-	last := index
-	for {
-		l := search(nums[last+1:], target)
-		if l == -1 {
-			break
-		}
-
-		// 新的数组从0开始计算，所以相对于first需要再加1
-		last += l + 1
-	}
-
-	return []int{first, last}
-}
-
-func search(nums []int, target int) int {
-	low, high := 0, len(nums)-1
-	var medium int
-
-	for low <= high {
-		medium = (low + high) / 2
-		switch {
-		case nums[medium] < target:
-			low = medium + 1
-		case nums[medium] > target:
-			high = medium - 1
-		default:
-			return medium
-		}
-	}
-
-	return -1
-}
-
-func main() {
-	res := searchRange2([]int{5, 7, 7, 8, 8, 8, 10}, 8)
-	fmt.Println(res)
-}
-
 // 直接寻找first last的二分查找
 // 注意mid值
 func searchRange2(nums []int, target int) []int {
@@ -113,4 +54,41 @@ func findLast(nums []int, target int) int {
 	}
 
 	return low
+}
+
+func searchRange(nums []int, target int) []int {
+	if len(nums) == 0 {
+		return []int{-1, -1}
+	}
+
+	left :=0
+	right := len(nums) - 1
+
+	for left < right {
+		mid := left + (right - left + 1)/ 2
+
+		if nums[mid] <= target {
+			left = mid
+		} else {
+			right = mid - 1
+		}
+	}
+
+	start := -1
+	end := -1
+	if nums[left] == target {
+		start = left
+		end = left
+		for start > 0 && nums[start - 1] == nums[start] {
+			start--
+		}
+
+		// 这个循环可以不写 因为向上取整之后得到的值就是右边界
+		for end < len(nums) - 1 && nums[end] == nums[end + 1] {
+			end++
+		}
+		return []int{start, end}
+	}
+
+	return []int{start, end}
 }

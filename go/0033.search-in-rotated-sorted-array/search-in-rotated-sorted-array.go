@@ -47,6 +47,8 @@ func main(){
 	fmt.Println(search([]int{3,1}, 1))
 }
 
+// 思路：只判断有序的那部分区间，其他情况放在else里
+//      先判断哪部分有序，找到有序区间。然后
 // https://leetcode-cn.com/problems/search-in-rotated-sorted-array/solution/er-fen-fa-python-dai-ma-java-dai-ma-by-liweiwei141/
 func search0(nums []int, target int) int {
 	left := 0
@@ -56,7 +58,7 @@ func search0(nums []int, target int) int {
 		// 根据分支的逻辑将中间数改成上取整
 		mid := left + (right - left + 1) / 2
 
-		//  右区间
+		//  右区间严格有序
 		if nums[mid] < nums[right] {
 			// 此时 [mid..right] 有序
 			if nums[mid] <= target && target <= nums[right] {

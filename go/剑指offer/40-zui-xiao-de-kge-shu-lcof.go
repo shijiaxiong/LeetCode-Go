@@ -6,46 +6,48 @@ import (
 
 // 快排序
 // 利用快排的性质，基准值左边比它小，右边比它大
+// 时间复杂度：O(n)
 func getLeastNumbers0(arr []int, k int) []int {
 	if k == 0 {
 		return []int{}
 	}
 
-	start, end := 0, len(arr)-1
+	left, right := 0, len(arr)-1
 	// 找基准值
-	index := partition(arr, start, end)
+	index := partition(arr, left, right)
 
 	for index != k-1 {
 		// 基准值比 k 大,基准值前面的数组都比K小
 		if index > k-1 {
-			end = index - 1
+			right = index - 1
 		} else {
 			// 基准比K小
-			start = index + 1
+			left = index + 1
 		}
 
-		index = partition(arr, start, end)
+		index = partition(arr, left, right)
 	}
 
 	return arr[:k]
 }
 
-func partition(arr []int, l, h int) int {
-	mid := arr[l]
-	for l < h {
-		for l < h && arr[h] >= mid {
-			h--
-		}
-		arr[l] = arr[h]
+func partition(arr []int, left, right int) int {
+	pivot := arr[left]
 
-		for l < h && arr[l] <= mid {
-			l++
+	for left < right {
+		for left < right && arr[right] >= pivot {
+			right--
 		}
-		arr[h] = arr[l]
+		arr[left] = arr[right]
+
+		for left < right && arr[left] <= pivot {
+			left++
+		}
+		arr[right] = arr[left]
 	}
 
-	arr[l] = mid
-	return l
+	arr[left] = pivot
+	return left
 }
 
 // 堆排序
@@ -97,4 +99,45 @@ func (h *IHeap) Push(x interface{}) {
 func (h *IHeap) Pop(v interface{}) {
 	*h, v = (*h)[:h.Len()-1], (*h)[h.Len()-1]
 	return
+}
+
+// 手撕堆排
+func getLeastNumbers2(arr []int, k int) []int {
+	return heapSort(arr,k)
+}
+
+func heapSort(nums []int, k int) []int {
+	lens := len(nums)
+	//  建堆
+	for i := lens/2 - 1;i >=0;i-- {
+		heapify(nums, lens, i)
+	}
+
+	//  排序
+	for i := lens - 1; i >0; i-- {
+		nums[0], nums[i] = nums[i],nums[0]
+
+		heapify(nums, i, 0)
+	}
+
+	return nums[:k]
+}
+
+func heapify(nums []int, n, i int) {
+	largest := i
+	lson := i * 2 + 1
+	rson := i * 2 + 2
+
+	if lson < n && nums[largest] < nums[lson] {
+		largest = lson
+	}
+
+	if rson < n && nums[largest] < nums[rson] {
+		largest = rson
+	}
+
+	if largest != i {
+		nums[i], nums[largest]  = nums[largest], nums[i]
+		heapify(nums, n, largest)
+	}
 }

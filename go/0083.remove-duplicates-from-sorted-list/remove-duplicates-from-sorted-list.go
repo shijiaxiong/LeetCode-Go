@@ -6,6 +6,7 @@ type ListNode struct {
 }
 
 // 排序链表,单指针
+// https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/solution/hua-jie-suan-fa-83-shan-chu-pai-xu-lian-biao-zhong/
 func deleteDuplicates(head *ListNode) *ListNode {
 	cur := head
 	for cur != nil && cur.Next != nil {

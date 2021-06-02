@@ -41,7 +41,7 @@ func mergeTwoLists0(l1 *ListNode, l2 *ListNode) *ListNode {
 }
 
 // 递归
-//https://leetcode-cn.com/problems/merge-two-sorted-lists/solution/yi-kan-jiu-hui-yi-xie-jiu-fei-xiang-jie-di-gui-by-/ 
+//https://leetcode-cn.com/problems/merge-two-sorted-lists/solution/yi-kan-jiu-hui-yi-xie-jiu-fei-xiang-jie-di-gui-by-/
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	// 递归终止条件
 	if l1 == nil {

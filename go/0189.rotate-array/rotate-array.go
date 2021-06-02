@@ -12,7 +12,9 @@ func rotate1(nums []int, k int) {
 
 // 旋转两次数组。
 func rotate(nums []int, k int) {
-	k = k % len(nums)
+	if k > len(nums) {
+		k = k%len(nums)
+	}
 
 	if k == 0 || k == len(nums) {
 		return
