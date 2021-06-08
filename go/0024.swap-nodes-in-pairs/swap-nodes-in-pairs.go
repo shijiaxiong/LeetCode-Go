@@ -24,3 +24,24 @@ func swapPairs(head *ListNode) *ListNode {
 
 	return next
 }
+
+// 迭代
+func swapPairs1(head *ListNode) *ListNode {
+	prev := &ListNode{}
+	prev.Next = head
+
+	temp := prev
+
+	for temp.Next != nil && temp.Next.Next != nil {
+		start := temp.Next
+		end := temp.Next.Next
+
+		temp.Next = end
+
+		start.Next = end.Next
+		end.Next = start
+		temp = start
+	}
+
+	return prev.Next
+}

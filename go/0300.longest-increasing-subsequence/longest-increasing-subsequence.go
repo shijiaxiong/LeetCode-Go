@@ -1,5 +1,6 @@
 package main
 
+// https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/dong-tai-gui-hua-er-fen-cha-zhao-tan-xin-suan-fa-p/
 // 动态规划
 // 状态转移方程：dp[i] = max(dp[i], dp[j]+1)
 // 时间复杂度：O(N^2)
@@ -10,6 +11,7 @@ func lengthOfLIS(nums []int) int {
 		return length
 	}
 
+	// 以nums[i]结尾的上升子序列的长度
 	dp := make([]int, length)
 	for k := range dp {
 		dp[k] = 1
@@ -47,7 +49,8 @@ func lengthOfLIS1(nums []int) int {
 		return length
 	}
 
-	//  长度为i+1的子序列末尾最小的是几
+	// tail 不一定是最长子序列的元素
+	// 表示：长度为i+1的子序列末尾最小的是几
 	tail := make([]int, length)
 	tail[0] = nums[0]
 	// end 表示有序数组 tail 的最后一个已经赋值元素的索引
@@ -76,6 +79,7 @@ func lengthOfLIS1(nums []int) int {
 
 	end++
 	// 输出队列
+	//
 	// fmt.Println(tail[:end])
 	return end
 }

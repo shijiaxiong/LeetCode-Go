@@ -31,3 +31,33 @@ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 
 	return l
 }
+
+// https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/236-er-cha-shu-de-zui-jin-gong-gong-zu-xian-hou-xu/
+// 时间复杂度：O(N)
+// 空间复杂度：O(N)
+func lowestCommonAncestor1(root, p, q *TreeNode) *TreeNode {
+	// 递归终止条件
+	// 到达叶子结点，再往下就是空；root 等于 p 或者q 直接返回root
+	if root == nil || root == q || root == p {
+		return root
+	}
+
+	left := lowestCommonAncestor1(root.Left, p, q)
+	right := lowestCommonAncestor1(root.Right, p, q)
+
+	// root的左右子树中都不含有p q 返回空
+	if left == nil && right == nil {
+		return nil
+	}
+
+	if left == nil {
+		return right
+	}
+
+	if right == nil {
+		return left
+	}
+
+	// left right同时不为空，p,q在异侧
+	return root
+}

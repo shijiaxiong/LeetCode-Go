@@ -8,6 +8,7 @@ func lengthOfLongestSubstring(s string) int {
 	charIndex := make(map[rune]int)
 	start, maxLength, length := 0, 0, 0
 	for i, v := range []rune(s) {
+		// 遍历过程中出现重复，重复位置如果在上次起始位置之后，就重新计算
 		if lastIndex, ok := charIndex[v]; ok && lastIndex >= start {
 			start = lastIndex + 1
 			length = i - start + 1

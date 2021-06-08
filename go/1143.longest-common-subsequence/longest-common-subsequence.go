@@ -2,6 +2,7 @@ package problem1143
 
 // 二维矩阵的动态规划
 // 画dp-table可以方便理解
+// https://leetcode-cn.com/problems/longest-common-subsequence/solution/gong-shui-san-xie-zui-chang-gong-gong-zi-xq0h/
 func longestCommonSubsequence(text1 string, text2 string) int {
 
 	dp := make([][]int, len(text1) + 1)

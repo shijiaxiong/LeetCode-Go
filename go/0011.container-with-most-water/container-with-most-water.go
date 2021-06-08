@@ -9,6 +9,7 @@ func maxArea(height []int) int {
 	i, j, max := 0, len(height)-1, 0
 
 	for i < j {
+		// 限制容器容量的是最小的板子，所以要取最小的值进行计算
 		if height[i] < height[j] {
 			max = getMax(max, (j-i) * height[i])
 			i++

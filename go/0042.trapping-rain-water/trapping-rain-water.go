@@ -44,3 +44,36 @@ func trap(height []int) int {
 func main() {
 	trap([]int{0,1,0,2,1,0,1,3,2,1,2,1})
 }
+
+// 单调栈
+// https://leetcode-cn.com/problems/trapping-rain-water/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-w-8/
+func trap1(height []int) int {
+	sum := 0
+	// 栈存储元素下标
+	stack := []int{}
+	current := 0
+	for current < len(height) {
+		// 保持栈内元素顺序递减，也就是当前元素不大于栈顶元素
+		for len(stack) > 0 && height[current] > height[stack[len(stack) - 1]] {
+			// 要取出的元素下标
+			h := height[stack[len(stack) - 1]]
+
+			// 出栈
+			stack = stack[:len(stack) - 1]
+			if len(stack) == 0 {
+				break
+			}
+
+			// 两堵墙之间的距离
+			distance := current - stack[len(stack) - 1] - 1
+			m := smaller(height[current], height[stack[len(stack) - 1]])
+
+			sum = sum + distance * (m - h)
+		}
+
+		stack = append(stack, current)
+		current++
+	}
+
+	return sum
+}
