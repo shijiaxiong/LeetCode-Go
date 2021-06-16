@@ -34,7 +34,7 @@ func reverseN(head *ListNode, n int) *ListNode {
 
 }
 
-// 双指针
+// 双指针 头插法
 // https://leetcode-cn.com/problems/reverse-linked-list-ii/solution/java-shuang-zhi-zhen-tou-cha-fa-by-mu-yi-cheng-zho/
 func reverseBetween0(head *ListNode, m int, n int) *ListNode {
 	dummy := &ListNode{}

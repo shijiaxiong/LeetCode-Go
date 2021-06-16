@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// https://leetcode-cn.com/problems/powx-n/solution/powx-n-by-leetcode-solution/
 // 递归
 // 时间复杂度：O(logn)
 // 空间复杂度：O(logn)
@@ -19,12 +20,14 @@ func quickMul(x float64, n int) float64 {
 		return 1
 	}
 
+	// 递归指数减少一半
 	y := quickMul(x, n/2)
 
 	if n%2 == 0 {
 		return y * y
 	}
 
+	// 奇数次
 	return y * y * x
 }
 

@@ -28,7 +28,8 @@ func recursive(nums []int, length int, depth int, cur []int, visited []bool, res
 	for i := 0; i < length; i++ {
 		if !visited[i] {
 			// 访问过的相同数字跳过
-			if i > 0 && nums[i] == nums[i-1] && visited[i-1] {
+			// !visited[i-1]， 说明同⼀树层nums[i - 1]使⽤过，为false是因为在深度优先遍历过程中被撤销了，接着遍历会造成重复，所以跳过
+			if i > 0 && nums[i] == nums[i-1] && !visited[i-1] {
 				continue
 			}
 

@@ -1,5 +1,6 @@
 package main
 
+// 从1开始减去不断增大的奇数
 func isPerfectSquare(num int) bool {
 	num1 := 1
 	for num > 0 {

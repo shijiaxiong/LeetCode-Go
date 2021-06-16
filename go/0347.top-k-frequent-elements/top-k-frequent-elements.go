@@ -2,33 +2,32 @@ package main
 
 import (
 	"container/heap"
-	"fmt"
-	"sort"
 )
 
 func topKFrequent(nums []int, k int) []int {
-	res := make([]int, 0, k)
-
-	// 统计每个数字出现的次数
-	rec := make(map[int]int, len(nums))
-	for _, n := range nums {
-		rec[n]++
+	//  使用字典，统计每个元素出现的次数，元素为键，元素出现的次数为值
+	hash := map[int]int{}
+	for i := range nums {
+		hash[nums[i]]++
 	}
 
-	//	对出现次数进行排序
-	counts := make([]int, 0, len(rec))
-	for _, c := range rec {
-		counts = append(counts, c)
+	//桶排序
+	//将频率作为数组下标，对于出现频率不同的数字集合，存入对应的数组下标
+	//  出现的次数是key,key越大说明出现的频率越高
+	bucket := make([][]int, len(nums))
+	for key,value := range hash {
+		bucket[value - 1] = append(bucket[value - 1], key)
 	}
 
-	sort.Ints(counts)
-
-	// min 是 前 k 个高频数字的底线
-	min := counts[len(counts)-k]
-
-	for n, c := range rec {
-		if c >= min {
-			res = append(res, n)
+	// 倒序遍历数组获取出现顺序从大到小的排列
+	res := []int{}
+	for i := len(bucket) - 1; i >=0; i-- {
+		if len(bucket[i]) == 0 {
+			continue
+		}
+		res = append(res, bucket[i]...)
+		if len(res) >= k {
+			break
 		}
 	}
 
@@ -91,37 +90,6 @@ func (h *IHeap) Pop() interface{} {
 }
 
 func main() {
-	topKFrequent1([]int{1, 1, 1, 2, 2, 3}, 2)
+
 }
 
-//
-func topKFrequent1(nums []int, k int) []int {
-	hashMap := map[int]int{}
-	for _, num := range nums {
-		hashMap[num]++
-	}
-	fmt.Println(hashMap)
-
-	// value最小为1，即至少出现一次
-	// bucket下标大 意味着出现频率高
-	bucket := make([][]int, len(nums))
-	for key, value := range hashMap {
-		bucket[value - 1] = append(bucket[value - 1], key)
-	}
-
-	fmt.Println(bucket)
-
-	var res []int
-	for i := len(bucket) - 1; i >= 0; i-- {
-		if len(bucket[i]) == 0 {
-			continue
-		}
-
-		res = append(res, bucket[i]...)
-		if len(res) >= k {
-			break
-		}
-	}
-
-	return res
-}
