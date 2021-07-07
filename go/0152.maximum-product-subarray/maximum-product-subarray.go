@@ -41,3 +41,33 @@ func max(a, b int) int {
 func main() {
 	fmt.Println(maxProduct([]int{-2,3,-4}))
 }
+
+//https://leetcode-cn.com/problems/maximum-product-subarray/solution/dong-tai-gui-hua-li-jie-wu-hou-xiao-xing-by-liweiw/
+// 动态规划
+// 时间复杂度:O(N)
+// 空间复杂度:O(N)
+func maxProduct1(nums []int) int {
+	//  以 nums[i] 结尾的连续子数组的最值, 1 最大值，0最小值
+	dp := make([][2]int, len(nums))
+	dp[0][0] = nums[0]
+	dp[0][1] = nums[0]
+
+	for i := 1; i < len(nums); i++ {
+		if nums[i] >= 0 {
+			dp[i][0] = min(nums[i], dp[i-1][0] * nums[i])
+			dp[i][1] = max(nums[i], dp[i-1][1] * nums[i])
+		} else {
+			dp[i][0] = min(nums[i], dp[i-1][1] * nums[i])
+			dp[i][1] = max(nums[i], dp[i-1][0] * nums[i])
+		}
+	}
+
+	res := dp[0][1]
+	for i := 1; i < len(nums); i++ {
+		res = max(res, dp[i][1])
+	}
+
+	return res
+}
+
+// 动态规划 降维

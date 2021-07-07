@@ -5,43 +5,48 @@ import (
 )
 
 // 滑动窗口
+// 参考：https://leetcode-cn.com/problems/minimum-window-substring/solution/hua-dong-chuang-kou-ji-bai-liao-100de-javayong-hu-/
 func minWindow(s string, t string) string {
+	//  窗口中s中各个字符出现的次数
 	have := [128]int{}
+	//  t中各个字符出现的次数，作为参照
 	need := [128]int{}
+
+	// 统计t中各个字符出现的次数
 	for i := range t {
 		need[t[i]]++
 	}
 
-	size, total := len(s), len(t)
+	//  i, j窗口的左右指针；count 统计已有t中字母的数量
+	i := 0
+	j := 0
+	count := 0
 
-	min := size + 1
+	// min用来统计最小字符串 赋给一个不可能的大值
+	min := len(s) + 1
 	res := ""
 
-	// s[i:j+1] 就是 window
-	// count 用于统计已有的 t 中字母的数量。
-	// count == total 表示已经收集完需要的全部字母
-	for i, j, count := 0, 0, 0; j < size; j++ {
-		if have[s[j]] < need[s[j]] {
-			// 出现了 window 中缺失的字母
-			count++
-		}
+	for j < len(s) {
 		have[s[j]]++
 
-		// 保证 window 不丢失所需字母的前提下
-		// 让 i 尽可能的大
-		// 当j的移动使得hava中的字母重复的时候 i移动
+		//  s中出现了t中的字符
+		if need[s[j]] > 0 && need[s[j]] >= have[s[j]] {
+			count++
+		}
+
+		// 在满足条件的情况下尽可能的缩短窗口的大小
 		for i <= j && have[s[i]] > need[s[i]] {
-			fmt.Println(i,j)
 			have[s[i]]--
 			i++
 		}
 
-		width := j - i + 1
-		if count == total && min > width {
+		// 计算当前的子串大小(也就是窗口大小)
+		width := j - i - 1
+		if count == len(t) && min > width {
 			min = width
-			res = s[i : j+1]
+			res = s[i:j+1]
 		}
-
+		j++
 	}
 
 	return res

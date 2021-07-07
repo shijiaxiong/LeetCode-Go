@@ -1,5 +1,9 @@
 package main
 
+import (
+	"math"
+)
+
 // 动态规划
 func maxProfit(k int, prices []int) int {
 	if len(prices) == 0 {
@@ -64,48 +68,42 @@ func max(a, b int) int {
 }
 
 // 动态规划 优化
+// https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/solution/dong-tai-gui-hua-by-liweiwei1419-4/
 func maxProfit0(k int, prices []int) int {
-	if len(prices) == 0 {
+	if k == 0 || len(prices) < 2 {
 		return 0
 	}
 
-	length := len(prices)
-
-	// k 超过length/2(可盈利的最大交易次数)
-	if k >= length/2 {
-		return maxProfitB(prices)
+	// 特殊判断，因为交易一次需要 2 天，如果 k >= len / 2，相当于没有限制，转换成122题
+	if k >= len(prices) / 2 {
+		return greedy(prices)
 	}
 
-	dp := make([][2]int, k+1)
+	// dp[j][2] j : 第j次交易，
+	dp := make([][2]int, k + 1)
 
-	for i := 1; i <= k; i++ {
-		dp[i][0] = 0
-		dp[i][1] = -prices[0]
+	for i := range dp {
+		// 可以设置为dp[i][1] = -price[0]; 但是下边i就要从1开始
+		dp[i][1] = math.MinInt64
 	}
 
-	for i := 1; i < length; i++ {
-		for j := k; j > 0; j-- {
-			dp[j][0] = max(dp[j][0], dp[j][1]+prices[i])
+	for i := 0; i < len(prices); i++ {
+		for j := 1; j<= k; j++ { // k 次交易
 			dp[j][1] = max(dp[j][1], dp[j-1][0]-prices[i])
+			dp[j][0] = max(dp[j][0], dp[j][1] + prices[i])
 		}
 	}
 
 	return dp[k][0]
 }
 
-func maxProfitB(prices []int) int {
-	length := len(prices)
-
-	if length == 0 {
-		return 0
+func greedy(prices []int) int {
+	profit := 0
+	for i := 1; i < len(prices); i++ {
+		if prices[i] > prices[i-1] {
+			profit += prices[i] - prices[i-1]
+		}
 	}
 
-	profit0 := 0
-	profit1 := -prices[0]
-	for i := 1; i < length; i++ {
-		profit0 = max(profit0, profit1+prices[i])
-		profit1 = max(profit1, profit0-prices[i])
-	}
-
-	return profit0
+	return profit
 }

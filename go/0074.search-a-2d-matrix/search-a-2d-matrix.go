@@ -4,28 +4,26 @@ import (
 	"fmt"
 )
 
-func searchMatrix0(matrix [][]int, target int) bool {
-	if len(matrix) == 0 {
-		return false
-	}
+func searchMatrix(matrix [][]int, target int) bool {
 	for i := 0; i < len(matrix); i++ {
-		if len(matrix[i]) == 0{
-			return false
-		}
-		// 判断目标值在哪一行
-		if matrix[i][0] <= target && matrix[i][len(matrix[i])-1] >= target {
-			l := 0
-			h := len(matrix[i])-1
-			for l <= h {
-				mid := l+ (h - l) / 2
+		//  寻找目标值会在哪一行
+		if matrix[i][0] <= target && target <= matrix[i][len(matrix[i])  - 1] {
+			left := 0
+			right := len(matrix[i]) - 1
+			for left < right {
+				mid := left + (right - left + 1) / 2
 				if matrix[i][mid] > target {
-					h = mid-1
-				} else if matrix[i][mid] < target {
-					l = mid+1
+					right = mid - 1
 				} else {
-					return true
+					left = mid
 				}
 			}
+
+			if matrix[i][left] == target {
+				return true
+			}
+
+			return false
 		}
 	}
 
@@ -33,26 +31,25 @@ func searchMatrix0(matrix [][]int, target int) bool {
 }
 
 // 把矩阵退化成一位数组
-func searchMatrix(matrix [][]int, target int) bool {
-	if len(matrix) == 0 {
-		return false
-	}
-
+func searchMatrix1(matrix [][]int, target int) bool {
+	left := 0
+	right := len(matrix) * len(matrix[0]) - 1
 	m := len(matrix[0])
-	low := 0
-	high := len(matrix[0])*len(matrix)-1
 
-	for low <= high {
-		mid := low + (high - low) >> 1
-		// 找到虚数组的序号
-		if matrix[mid/m][mid%m] == target {
-			return true
-		} else if matrix[mid/m][mid%m] >target {
-			high = mid -1
+	for left < right {
+		//  向上取整[left, mid-1] [mid, right]
+		mid := left + (right - left + 1) / 2
+		if matrix[mid/m][mid%m] > target {// mid在右区间，mid值>target的时候，目标值一定在左区间
+			right = mid - 1
 		} else {
-			low = mid +1
+			left = mid
 		}
 	}
+
+	if matrix[left/m][left%m] == target {
+		return true
+	}
+
 	return false
 }
 

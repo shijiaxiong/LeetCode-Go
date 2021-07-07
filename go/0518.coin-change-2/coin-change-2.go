@@ -42,6 +42,7 @@ func change(amount int, coins []int) int {
 }
 
 // 动态规划空间优化
+// dp[i] 代表装满容量为i的背包有几种硬币组合
 // dp[i] = dp[i]+ dp[i-k];dp[i] 表示对于第k个硬币能凑的组合数
 func change0(amount int, coins []int) int {
 	// 对特殊情况处理可以减少耗时

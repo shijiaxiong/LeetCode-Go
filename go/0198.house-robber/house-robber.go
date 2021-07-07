@@ -1,40 +1,41 @@
 package problem0198
 
 // 动态规划
+// https://leetcode-cn.com/problems/house-robber/solution/dong-tai-gui-hua-jie-ti-si-bu-zou-xiang-jie-cjavap/
 // 动态规划方程：dp[i] = max(dp[i-1], dp[i-2] + nums[i])
 func rob1(nums []int)int{
-	n := len(nums)
-	if n == 0 {
+	if len(nums) == 0 {
 		return 0
 	}
-	if n == 1 {
-		return nums[0]
+	// dp[i] 表示盗取第i间房的价值
+	dp := make([]int, len(nums) + 1)
+	dp[0] = 0
+	dp[1] = nums[0]
+
+	for i := 2; i <= len(nums); i++ {
+		// 第i间房子的价值是nums[i-1]
+		dp[i] = max(dp[i-1], dp[i-2] + nums[i - 1])
 	}
-	// dp[i] 代表抢 nums[0...i] 房子的最大价值
-	dp := make([]int, n)
-	dp[0], dp[1] = nums[0], max(nums[1], nums[0])
-	for i := 2; i < n; i++ {
-		dp[i] = max(dp[i-1], nums[i]+dp[i-2])
-	}
-	return dp[n-1]
+
+	return dp[len(nums)]
 }
 
 // 动态规划优化辅助空间
 func rob2(nums []int)int {
-	n := len(nums)
-	if n == 0 {
+	if len(nums) == 0 {
 		return 0
 	}
 
-	pre , cur := 0,0
+	prev := 0
+	curr := nums[0]
 
-	for _,v := range nums{
-		temp := cur
-		cur = max(cur,v+pre)
-		pre = temp
-	 }
+	for i := 2; i <= len(nums); i++ {
+		temp := max(curr, prev + nums[i - 1])
+		prev = curr
+		curr = temp
+	}
 
-	 return cur
+	return curr
 }
 
 func rob(nums []int) int {

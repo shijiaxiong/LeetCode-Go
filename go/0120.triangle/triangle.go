@@ -48,18 +48,23 @@ func dfs0(triangle [][]int, i, j int, mem *[][]int) int {
 
 // 动态规划
 // 二维数组
+// 时间复杂度:O(N^2)
+// 空间复杂度:O(N^2)
 func minimumTotal1(triangle [][]int) int {
-	dp:=make([][]int, len(triangle))
-	for i:= range dp{
+	dp := make([][]int, len(triangle))
+	for i := range dp {
 		dp[i] = make([]int, len(triangle))
 	}
 
-	for i := len(triangle)-1;i>=0;i--{
-		for j := 0;j< len(triangle[i]);j++{
-			if i == len(triangle)-1{
+	// 从左下角遍历
+	for i := len(triangle) - 1; i>= 0; i-- {
+		for j := 0; j < len(triangle[i]); j++ {//同一层数据
+			//  base case
+			if i == len(triangle) - 1 {
 				dp[i][j] = triangle[i][j]
 			} else {
-				dp[i][j] = min(dp[i+1][j], dp[i+1][j+1])+triangle[i][j]
+				//  状态转移方程
+				dp[i][j] = min(dp[i+1][j], dp[i+1][j+1]) + triangle[i][j]
 			}
 		}
 	}
@@ -69,7 +74,20 @@ func minimumTotal1(triangle [][]int) int {
 
 // 动态规划
 // 一位数组
+// 时间复杂度:O(N^2)
+// 空间复杂度:O(N)
+func minimumTotal2(triangle [][]int) int {
+	// 多申请一个空间防止越界
+	dp := make([]int, len(triangle) + 1)
 
+	for i := len(triangle) - 1; i >= 0; i-- {
+		for j := 0; j < len(triangle[i]); j++ {
+			dp[j] = min(dp[j], dp[j+1]) + triangle[i][j]
+		}
+	}
+
+	return dp[0]
+}
 
 func main() {
 	fmt.Println(minimumTotal0([][]int{{2}, {3, 4}, {6, 5, 7}, {4, 1, 8, 3}}))
